@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base reset ─────────────────────────────── */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Scrollbar styling (dark theme) ─────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ── Custom utilities ───────────────────────── */
+@layer components {
+  .glass-card {
+    @apply bg-surface/80 backdrop-blur-sm border border-slate-700/50 rounded-xl shadow-lg;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-accent/30 hover:shadow-accent/5 hover:shadow-xl;
+  }
+
+  .input-dark {
+    @apply w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-2.5 text-slate-100
+           placeholder-slate-500 transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent;
+  }
+
+  .input-error {
+    @apply border-rose-500 focus:ring-rose-500/50 focus:border-rose-500;
+  }
+
+  .btn-primary {
+    @apply px-6 py-2.5 bg-gradient-to-r from-accent to-purple-500 text-white font-medium
+           rounded-lg transition-all duration-200 shadow-lg shadow-accent/25
+           hover:shadow-accent/40 hover:brightness-110
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2.5 bg-slate-700 text-slate-200 font-medium rounded-lg
+           transition-all duration-200 border border-slate-600
+           hover:bg-slate-600 hover:border-slate-500
+           active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .label-text {
+    @apply block text-sm font-medium text-slate-300 mb-1.5;
+  }
+
+  .section-title {
+    @apply text-lg font-semibold text-slate-100;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold text-white tracking-tight;
+  }
+
+  .stat-value {
+    @apply text-3xl font-bold bg-gradient-to-r from-accent-light to-purple-400 bg-clip-text text-transparent;
+  }
+}
+
+/* ── Toast animations ───────────────────────── */
+.toast-enter {
+  animation: toastIn 0.3s ease-out forwards;
+}
+
+.toast-exit {
+  animation: toastOut 0.2s ease-in forwards;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.95);
+  }
+}
